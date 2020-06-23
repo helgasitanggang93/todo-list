@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js",
-    "test": "mocha --exit",
-    "test-coverage": "nyc --reporter=html npm run test",
-    "devWin": "SET \"NODE_ENV=development\" && nodemon app.js"
+    "dev": "NODE_ENV=development nodemon app.js",
+    "test": "NODE_ENV=test node app.js mocha --exit",
+    "test-coverage": "NODE_ENV=test nyc --reporter=html npm run test",
+    "devWin": "SET \"NODE_ENV=development\" && nodemon app.js",
+    "testWin": "SET \"NODE_ENV=test\" && nyc mocha --exit",
+    "startwin": "SET \"NODE_ENV=production\" && node app.js"
   },
   "repository": {
     "type": "git",
