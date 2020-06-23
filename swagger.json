@@ -1,0 +1,460 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Todo List",
+    "version": "1.0.0",
+    "title": "Swagger Contact App"
+  },
+  "host": "http://localhost:3000",
+  "basePath": "/api/docs",
+  "tags": [
+    {
+      "name": "Todo",
+      "description": "Operation about todo"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/todos": {
+      "post": {
+        "tags": [
+          "Todo"
+        ],
+        "summary": "Add a new Todo to the database",
+        "description": "",
+        "operationId": "createTodo",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Todo object from client side",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {"type":"string", "required": true},
+                "description": {"type":"string", "required": true}
+              },
+              "example": {
+                "title":"lunch",
+                "description":"I want to eat tommorrow"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {"type": "string"},
+                "title": {"type":"string"},
+                "description": {"type":"string"},
+                "status": {"type":"boolean"},
+                "createdAt":{"type":"date"},
+                "updatedAt":{"type":"date"}
+              },
+              "example": {
+                "_id":"5e425e53fb5460424360925f",
+                "title": "lunch",
+                "description": "I want to eat tommorrow",
+                "status": false,
+                "createdAt":"2020-06-23T14:08:49.382Z",
+                "updatedAt":"2020-06-23T14:08:49.382Z"
+              }
+             
+            }
+          },
+          "400": {
+            "description": "validation failed",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {"type":"string"}
+              },
+              "example":{
+                "message":"Properties must Title and Description"
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {"type":"string"}
+              },
+              "example":{
+                "message":"Some Message"
+              }
+            }
+          }
+
+        }
+      },
+      "get": {
+        "tags": [
+          "Todo"
+        ],
+        "summary": "Get all todo data",
+        "description": "",
+        "operationId": "getAllTodo",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "properties": {
+                "_id": {"type": "string"},
+                "title": {"type":"string"},
+                "description": {"type":"string"},
+                "status": {"type":"boolean"},
+                "createdAt":{"type":"date"},
+                "updatedAt":{"type":"date"}
+              },
+              "example": {
+               "data1": {
+                "_id":"5e425e53fb5460424360925f",
+                "title":"I want to learn",
+                "description":"learn react",
+                "status":true,
+                "createdAt":"2020-06-23T14:08:49.382Z",
+                "updatedAt":"2020-06-23T14:08:49.382Z"
+              },
+              "data2":{
+                "_id":"5e425e53fb5460424360925f",
+                "title":"I go to shop",
+                "description":"buy noodle",
+                "status":false,
+                "createdAt":"2020-06-23T14:08:49.382Z",
+                "updatedAt":"2020-06-23T14:08:49.382Z"
+              }
+              }
+             
+            }
+          },
+          "500": {
+            "description": "Internal server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {"type":"string"}
+              },
+              "example":{
+                "message":"Some Message"
+              }
+            }
+          }
+
+        }
+      }
+    },
+    "/todos/todoId": {
+      "get": {
+        "tags": [
+          "Todo"
+        ],
+        "summary": "Get one Todo data",
+        "description": "",
+        "operationId": "findOneTodo",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "todoId",
+            "description": "id to get each Todo data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties":{
+                "todoId": {"type": "string"}
+              },
+              "example":{
+                "todoId":"5e425e53fb5460424360925f"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {"type": "string"},
+                "title": {"type":"string"},
+                "description": {"type":"string"},
+                "status": {"type":"boolean"},
+                "createdAt":{"type":"date"},
+                "updatedAt":{"type":"date"}
+              },
+              "example": {
+                "_id":"5e425e53fb5460424360925f",
+                "title":"I want to learn",
+                "description":"learn react",
+                "status":true,
+                "createdAt":"2020-06-23T14:08:49.382Z",
+                "updatedAt":"2020-06-23T14:08:49.382Z"
+              }
+             
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {"type":"string"}
+              },
+              "example":{
+                "message":"Some Message"
+              }
+            }
+          }
+
+        }
+      },
+      "put": {
+        "tags": [
+          "Todo"
+        ],
+        "summary": "update one Todo data",
+        "description": "",
+        "operationId": "updateTodo",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "todoId",
+            "description": "id to update Todo data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties":{
+                "todoId": {"type": "string"}
+              },
+              "example":{
+                "todoId":"5e425e53fb5460424360925f"
+              }
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Todo object from client side",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {"type":"string"},
+                "description": {"type":"string"},
+                "status": {"type":"boolean"}
+              },
+              "example": {
+                "title":"I want to sleep",
+                "description":"I am tired",
+                "status":true
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {"type": "string"},
+                "title": {"type":"string"},
+                "description": {"type":"string"},
+                "status": {"type":"boolean"},
+                "createdAt":{"type":"date"},
+                "updatedAt":{"type":"date"}
+              },
+              "example": {
+                "_id":"5e425e53fb5460424360925f",
+                "title":"I want to sleep",
+                "description":"I am tired",
+                "status":true,
+                "createdAt":"2020-06-23T14:08:49.382Z",
+                "updatedAt":"2020-07-23T14:08:49.382Z"
+              }
+             
+            }
+          },
+          "400": {
+            "description": "validation failed",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {"type":"string"}
+              },
+              "example":{
+                "message":"Properties must Title, Description, Status"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {"type":"string"}
+              },
+              "example":{
+                "message":"Some Message"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Todo"
+        ],
+        "summary": "Delete one Todo data",
+        "description": "",
+        "operationId": "deleteUpdate",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "todoId",
+            "description": "id delete Todo data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties":{
+                "todoId": {"type": "string"}
+              },
+              "example":{
+                "todoId":"5e425e53fb5460424360925f"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {"type": "string"},
+                "title": {"type":"string"},
+                "description": {"type":"string"},
+                "status": {"type":"boolean"},
+                "createdAt":{"type":"date"},
+                "updatedAt":{"type":"date"}
+              },
+              "example": {
+                "_id":"5e425e53fb5460424360925f",
+                "title":"I want to sleep",
+                "description":"I am tired",
+                "status":true,
+                "createdAt":"2020-06-23T14:08:49.382Z",
+                "updatedAt":"2020-07-23T14:08:49.382Z"
+              }
+             
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {"type":"string"}
+              },
+              "example":{
+                "message":"Some Message"
+              }
+            }
+          }
+
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+      "flow": "implicit",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Todo": {
+      "type": "object",
+      "required": [
+        "title",
+        "description",
+        "status"
+      ],
+      "properties": {
+        "_id": {
+          "string": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "date"
+        },
+        "updatedAt": {
+          "type": "date"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
