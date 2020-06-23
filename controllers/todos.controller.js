@@ -10,8 +10,7 @@ class TodoController {
       const createdTodo = await Todo.create({
         title,
         description,
-        status,
-        due_date,
+        status: false,
         createdAt: new Date(),
         updatedAt: new Date()
       });
@@ -46,14 +45,7 @@ class TodoController {
   static async readOne(req, res, next){
     try {
       const {todoId} = req.params;
-      const oneTodo = await Todo.findById(todoId);
-      if(!oneTodo){
-        return res.status(httpStatusCodes._200_OK.code).json({
-          data: null,
-          message: messageHandler.todo.dataEmpty
-        });
-      }
-
+      const oneTodo = await Todo.findOne({_id:todoId});
       return res.status(httpStatusCodes._200_OK.code).json({
         data: oneTodo,
         message: messageHandler.todo.successDataRetrieve

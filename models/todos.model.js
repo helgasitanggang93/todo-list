@@ -4,7 +4,7 @@ const {Schema} = mongoose;
 const todoSchema = new Schema({
     title: String,
     description:String,
-    status: String,
+    status: Boolean,
     createdAt: Date,
     updatedAt: Date
 });
