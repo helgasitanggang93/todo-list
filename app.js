@@ -5,7 +5,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
-const port = process.env.PORT_PRODUCTION || process.env.PORT_DEVELOPMENT;
+const port = process.env.PORT || process.env.PORT_DEVELOPMENT;
 const todoRoutes = require('./routes');
 const uri = process.env.MONGO_PORT_PRODUCTION || "mongodb://localhost:27017/todoList_" + process.env.NODE_ENV;
 mongoose.set("useNewUrlParser", true);
