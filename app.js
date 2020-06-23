@@ -22,6 +22,7 @@ mongoose.connect(uri, (err) => {
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());
+app.use(express.static('coverage'));
 app.use("/api", todoRoutes);
 app.use((err, req, res, next) => {
   let status = err.status || 500

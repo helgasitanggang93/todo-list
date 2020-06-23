@@ -7,7 +7,7 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "test": "mocha --exit",
-    "test-coverage": "nyc --reporter=text npm run test",
+    "test-coverage": "nyc --reporter=html npm run test",
     "devWin": "SET \"NODE_ENV=development\" && nodemon app.js"
   },
   "repository": {
