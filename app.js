@@ -23,6 +23,11 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());
 app.use("/api", todoRoutes);
+app.use((err, req, res, next) => {
+  let status = err.status || 500
+  let message = err.message || "error with no error message passed"
+  res.status(status).json(message);
+});
 app.listen(port, () =>{
   console.log(`Listening to ${port}`)
 });

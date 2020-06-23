@@ -5,7 +5,6 @@ const todoSchema = new Schema({
     title: String,
     description:String,
     status: String,
-    due_date: String,
     createdAt: Date,
     updatedAt: Date
 });
