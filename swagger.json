@@ -3,9 +3,9 @@
   "info": {
     "description": "Todo List",
     "version": "1.0.0",
-    "title": "Swagger Contact App"
+    "title": "Swagger Todo App"
   },
-  "host": "http://localhost:3000",
+  "host": "https://thawing-refuge-51891.herokuapp.com/",
   "basePath": "/api/docs",
   "tags": [
     {
