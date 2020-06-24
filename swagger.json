@@ -6,7 +6,7 @@
     "title": "Swagger Todo App"
   },
   "host": "https://thawing-refuge-51891.herokuapp.com/",
-  "basePath": "/api/docs",
+  "basePath": "/api/",
   "tags": [
     {
       "name": "Todo",
